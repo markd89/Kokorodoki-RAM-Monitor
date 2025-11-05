@@ -1,0 +1,10 @@
+[Unit]
+Description=Run kokorodoki-monitor every 10 minutes
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=10min
+Unit=kokorodoki-monitor.service
+
+[Install]
+WantedBy=timers.target

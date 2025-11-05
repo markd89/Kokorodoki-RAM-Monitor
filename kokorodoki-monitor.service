@@ -1,0 +1,6 @@
+[Unit]
+Description=Monitor kokorodoki.service memory and activity
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/kokorodoki_monitor.sh

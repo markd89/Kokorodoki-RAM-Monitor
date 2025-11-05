@@ -18,13 +18,13 @@ Kokorodoki https://github.com/eel-brah/kokorodoki
 
 As root...
 
-Copy kokorodoki_monitor.sh to /usr/local/bin 
+Copy kokorodoki_monitor.sh to /usr/local/sbin 
 
-chmod +x  usr/local/bin/kokorodoki_monitor.sh
+chmod +x  /usr/local/sbin/kokorodoki_monitor.sh
 
 Copy kokorodoki-monitor.service to /etc/systemd/system
 
-Copy koko-monitor.timer to /etc/systemd/system
+Copy kokorodoki-monitor.timer to /etc/systemd/system
 
 systemctl daemon-reload
 

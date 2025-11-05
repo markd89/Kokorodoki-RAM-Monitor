@@ -3,4 +3,4 @@ Description=Monitor kokorodoki.service memory and activity
 
 [Service]
 Type=oneshot
-ExecStart=/usr/local/bin/kokorodoki_monitor.sh
+ExecStart=/usr/local/sbin/kokorodoki_monitor.sh

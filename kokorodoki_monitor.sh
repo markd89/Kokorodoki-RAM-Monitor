@@ -23,9 +23,16 @@ LAST_LOG_TS=$(awk '{print int($1)}' <<< "$LAST_LOG_LINE")
 LAST_LOG_TEXT=$(awk '{$1=""; sub(/^ /,""); print}' <<< "$LAST_LOG_LINE")
 
 # --- check if service recently started new playback thread ---
-if grep -q "Started new playback thread" <<< "$LAST_LOG_TEXT"; then
-    echo "Active playback detected; skipping restart."
-    logger -t kokorodoki_monitor "Skip restart: active playback detected (mem=${MEM_GB}GB)."
+#if grep -q "Started new playback thread" <<< "$LAST_LOG_TEXT"; then
+#    echo "Active playback detected; skipping restart."
+#    logger -t kokorodoki_monitor "Skip restart: active playback detected (mem=${MEM_GB}GB)."
+#    exit 0
+#fi
+
+# --- check if playback has completed --- The previous method above could interrupt playback if we had done something like paused, resumed, changed speed as the last log line. Now we explicitly require Playback complete to initiate the restart.
+if ! grep -q "Playback complete" <<< "$LAST_LOG_TEXT"; then
+    echo "Playback not complete; skipping restart."
+    logger -t koko_monitor "Skip restart: playback not complete (mem=${MEM_GB}GB)."
     exit 0
 fi
 
